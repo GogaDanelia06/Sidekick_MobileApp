@@ -43,8 +43,9 @@ the Team ID. Put them on Vercel as described in SideKick `docs/DEPLOYMENT.md`
 3. ⚙ Project settings → **Service accounts** → *Generate new private key* →
    paste the whole file into Vercel as `FCM_SERVICE_ACCOUNT`, redeploy.
 
-Without `google-services.json` the Android app builds, but asking for
-notifications crashes it — add the file before testing push on Android.
+Without `google-services.json` the Android app works but never asks for
+notifications (`SidekickAppPlugin.java` tells the dashboard there is no
+Firebase). Add the file and rebuild before testing push on Android.
 
 ## 3. iPhone
 

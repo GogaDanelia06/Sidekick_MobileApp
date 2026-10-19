@@ -6,9 +6,12 @@ import type { CapacitorConfig } from "@capacitor/cli";
  * a home-screen icon, a store listing and real push notifications.
  *
  * For local testing against `pnpm dev` in ~/SideKick, see the `dev:*`
- * scripts in package.json (the Android emulator reaches this Mac as 10.0.2.2).
+ * scripts in package.json and the README.
  */
-const url = process.env.SIDEKICK_URL ?? "https://sidekick.ge/dashboard";
+// The site's origin only, no path: Capacitor keeps a link inside the app
+// only when it starts with this exact address, so ".../dashboard" here would
+// send /login (and every other page) out to Safari.
+const url = process.env.SIDEKICK_URL ?? "https://sidekick.ge";
 
 const config: CapacitorConfig = {
   // Permanent once published — the stores identify the app by it.
@@ -19,10 +22,12 @@ const config: CapacitorConfig = {
   // The website reads this to know it is inside the app (hide Google sign-in,
   // ask for notification permission, …). See ~/SideKick docs/DEPLOYMENT.md → "Mobile app".
   appendUserAgent: "SidekickApp",
-  backgroundColor: "#0d1117",
+  // No backgroundColor on purpose: the strip behind the clock then follows the
+  // phone's light/dark mode, as the dashboard's own theme does.
 
   server: {
     url,
+    appStartPath: "/dashboard",
     cleartext: url.startsWith("http://"),
     errorPath: "offline.html",
   },

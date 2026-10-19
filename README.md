@@ -39,8 +39,11 @@ npm run icons       # re-renders the icon and splash screen from assets/src
 
 ```bash
 npm run dev:ios       # iPhone simulator → http://localhost:3000
-npm run dev:android   # Android emulator → http://10.0.2.2:3000 (the emulator's name for this Mac)
+npm run dev:android   # Android emulator → the emulator's localhost:3000 is forwarded to this Mac
 ```
+
+Use `localhost`, not the emulator's usual `10.0.2.2` address: sign-in sends you
+back to `AUTH_URL` (`http://localhost:3000`), so the address must match.
 
 Run `npm run sync` afterwards so the next normal build points at sidekick.ge again.
 
@@ -58,6 +61,13 @@ Push needs one-time setup that only the account owner can do — Apple key,
 Firebase project. Step by step in [docs/STORES.md](docs/STORES.md).
 
 ## Things to know
+
+- **Android builds use Java 21.** Android Studio comes with Java 25, which this
+  Gradle version cannot run on; `android/gradle/gradle-daemon-jvm.properties`
+  makes it pick Java 21. A Mac without it: install Temurin 21 (adoptium.net).
+  The first Android build downloads a lot and can take 20 minutes.
+- **`www/dashboard/` must stay.** It is never shown, but Capacitor on iPhone
+  refuses to start unless a local folder matches `appStartPath`.
 
 - **The app id `ge.sidekick.app` is permanent** once published. Change it in
   `capacitor.config.ts`, `ios/App/App.xcodeproj` and `android/app/build.gradle`

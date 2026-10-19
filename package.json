@@ -7,8 +7,8 @@
     "sync": "cap sync",
     "ios": "cap open ios",
     "android": "cap open android",
-    "dev:ios": "SIDEKICK_URL=http://localhost:3000/dashboard cap run ios",
-    "dev:android": "SIDEKICK_URL=http://10.0.2.2:3000/dashboard cap run android",
+    "dev:ios": "SIDEKICK_URL=http://localhost:3000 cap run ios",
+    "dev:android": "\"$HOME/Library/Android/sdk/platform-tools/adb\" reverse tcp:3000 tcp:3000 && SIDEKICK_URL=http://localhost:3000 cap run android",
     "icons": "sh assets/src/render.sh && capacitor-assets generate --ios --android --iconBackgroundColor '#04030c' --iconBackgroundColorDark '#04030c' --splashBackgroundColor '#ffffff' --splashBackgroundColorDark '#0d1117'"
   },
   "engines": {
