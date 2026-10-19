@@ -1,0 +1,29 @@
+{
+  "name": "sidekick-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sidekick for iPhone and Android: the sidekick.ge dashboard in a native app, with push notifications.",
+  "scripts": {
+    "sync": "cap sync",
+    "ios": "cap open ios",
+    "android": "cap open android",
+    "dev:ios": "SIDEKICK_URL=http://localhost:3000/dashboard cap run ios",
+    "dev:android": "SIDEKICK_URL=http://10.0.2.2:3000/dashboard cap run android",
+    "icons": "sh assets/src/render.sh && capacitor-assets generate --ios --android --iconBackgroundColor '#04030c' --iconBackgroundColorDark '#04030c' --splashBackgroundColor '#ffffff' --splashBackgroundColorDark '#0d1117'"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.3",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/ios": "8.5.3",
+    "@capacitor/push-notifications": "8.1.3",
+    "@capacitor/splash-screen": "8.0.2"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "3.0.5",
+    "@capacitor/cli": "8.5.3",
+    "typescript": "5.9.3"
+  }
+}

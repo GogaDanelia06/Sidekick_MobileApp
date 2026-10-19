@@ -1,0 +1,14 @@
+node_modules/
+.DS_Store
+
+# Store signing secrets — never commit these.
+*.p8
+*.p12
+*.mobileprovision
+*.jks
+*.keystore
+android/keystore.properties
+
+# Firebase config files are not secret, but are per-project; keep them out
+# until the client's Firebase project is final.
+android/app/google-services.json
